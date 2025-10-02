@@ -159,3 +159,19 @@ jobs:
       - name: "Perform quality checks: pylint_srctest"
         run: |
           temp/bin/tox -e pylint_srctest
+
+  publish:
+    name: "PyPi Publish"
+    needs: ["test", "quality"]
+    #if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
+    runs-on: "ubuntu-latest"
+
+    steps:
+
+      - name: Download artifacts
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # 5.0.0
+
+      - name: show results
+        run: |
+          ls -al *.whl
+    
