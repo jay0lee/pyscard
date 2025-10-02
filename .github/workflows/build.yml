@@ -173,5 +173,6 @@ jobs:
 
       - name: show results
         run: |
-          ls -al *.whl
+          ls -al
+          unzip *.zip
     
