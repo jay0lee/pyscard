@@ -1,4 +1,4 @@
-name: build and publish releases to PyPi
+name: PyPi
 on:
   push:
     tags:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   pypi:
-    name: Upload release to PyPI
+    name: Upload to PyPI
     runs-on: ubuntu-latest
     environment:
       name: pypi
@@ -20,6 +20,11 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
+
+      - name: "Install build prerequisites (Linux)"
+        if: matrix.name == 'Linux'
+        run: |
+          sudo apt install libpcsclite-dev python3-all-dev python3-setuptools swig
 
       - name: Install required packages to publish
         run: |
