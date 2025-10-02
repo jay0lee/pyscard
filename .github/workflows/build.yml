@@ -113,7 +113,7 @@ jobs:
       - name: "Upload wheel"
         uses: actions/upload-artifact@v4
         with:
-          name: wheel-${{ matrix.name }}-${{ matrix.cpython }}-${{ matrix.architecture }}.zip
+          name: wheel-${{ matrix.name }}-${{ matrix.cpython }}-${{ matrix.architecture }}
           path: dist/*.whl
 
 
@@ -174,5 +174,6 @@ jobs:
       - name: show results
         run: |
           ls -al
-          unzip *.zip
+          unzip wheel-*
+          ls -al
     
